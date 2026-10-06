@@ -25,7 +25,7 @@ En este laboratorio practiqué el uso de contenedores con Docker: ejecutar conte
 | [parte6-volumenes.md](parte6-volumenes.md) | Persistencia con volúmenes y bind mounts |
 | [parte7-redes.md](parte7-redes.md) | Redes de Docker y comunicación entre servicios con Nginx y Redis |
 | [parte8-limpieza.md](parte8-limpieza.md) | Limpieza de contenedores, imágenes y volúmenes; uso de espacio con `docker system df` |
-| [app/](epp/) | Código de la aplicación: `app.py`, `requirements.txt` y `Dockerfile` |
+| [app/](App/) | Código de la aplicación: `app.py`, `requirements.txt` y `Dockerfile` |
 | [evidencias/](Evidencias/) | Capturas de pantalla usadas como evidencia |
 
 ## Estructura del repositorio
