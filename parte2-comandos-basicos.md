@@ -52,7 +52,7 @@ To generate this message, Docker took the following steps:
 ### Evidencias
 
 En la siguiente imagen se nota como estan funcionando adecuadamente los comandos de Docker:
-![Ejecución de comandos](evidencias/parte2-hello-world.png)
+![Ejecución de comandos](Evidencias/parte2-hello-world.png)
 
 ### Reflexión
 
