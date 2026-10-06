@@ -37,7 +37,7 @@ En las siguientes imágenes se evidencia que ambas páginas están corriendo cor
 
 ![Aplicación en localhost:5000](Evidencias/parte5-puertos-5000.png)
 
-![Ruta /info en localhost:5000](Evidencias/parte5-puertos-5000-info.png)
+![Ruta /info en localhost:5000](Evidencias/parte5-puertos-5000-sin-respuesta.png)
 
 ### Detener y eliminar el contenedor
 
