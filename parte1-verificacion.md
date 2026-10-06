@@ -8,7 +8,7 @@ Comprobar que Docker quedó instalado correctamente y que puedo ejecutar comando
 
 - **Sistema operativo:** Windows (con Docker Desktop usando WSL 2)
 - **Terminal:** PowerShell integrada en Visual Studio Code
-- **Versión de Docker instalada:** 29.8.1 (build 4a63305)
+- **Versión de Docker instalada:** 29.8.1 
 
 ---
 
@@ -95,7 +95,7 @@ Server:
 
 ### Reflexión
 
-`docker info` me pareció el comando más útil de esta parte, porque no solo confirma que Docker funciona, sino que también muestra con qué recursos cuenta (CPUs, memoria) y sobre qué sistema corren los contenedores. Me llamó la atención ver que en Windows Docker usa un kernel Linux por debajo.
+`docker info` me pareció el comando más útil de esta parte, porque no solo confirma que Docker funciona, sino que también muestra con qué recursos cuenta y sobre qué sistema corren los contenedores. Me llamó la atención ver que en Windows Docker usa un kernel Linux por debajo.
 
 ---
 
@@ -157,7 +157,7 @@ Instalar Docker solo coloca los programas en la computadora. Tenerlo ejecutándo
 
 **2. ¿Qué información útil muestra el comando `docker info`?**
 
-Muestra la versión del cliente y del servidor, el contexto de conexión, la cantidad de contenedores (en ejecución, pausados y detenidos) y de imágenes, el controlador de almacenamiento, los tipos de red y de volumen disponibles, el kernel y sistema operativo donde corre el motor, la arquitectura, y los recursos (CPUs y memoria). Es útil tanto para verificar que Docker funciona como para diagnosticar problemas.
+Muestra la versión del cliente y del servidor, el contexto de conexión, la cantidad de contenedores en ejecución, pausados y detenidos, y de imágenes, el controlador de almacenamiento, los tipos de red y de volumen disponibles, el kernel y sistema operativo donde corre el motor, la arquitectura, y los recursos (CPUs y memoria). Es útil tanto para verificar que Docker funciona como para diagnosticar problemas.
 
 **3. ¿Por qué Docker necesita un servicio o daemon ejecutándose en segundo plano?**
 
