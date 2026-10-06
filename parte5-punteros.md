@@ -35,9 +35,9 @@ En la columna `PORTS` aparece `0.0.0.0:5000->5000/tcp`. Antes, cuando ejecuté e
 
 En las siguientes imágenes se evidencia que ambas páginas están corriendo correctamente:
 
-![Aplicación en localhost:5000](evidencias/parte5-puertos-5000.png)
+![Aplicación en localhost:5000](Evidencias/parte5-puertos-5000.png)
 
-![Ruta /info en localhost:5000](evidencias/parte5-puertos-5000-info.png)
+![Ruta /info en localhost:5000](Evidencias/parte5-puertos-5000-info.png)
 
 ### Detener y eliminar el contenedor
 
@@ -100,7 +100,7 @@ ff74cb27e613   laboratorio-flask:1.0   "python app.py"   2 minutes ago   Up 2 mi
 
 En la siguiente imagen se evidencia que l local host no responde: 
 
-![localhost:5000 sin respuesta mientras el contenedor usa 8080:5000](evidencias/parte5-puertos-5000-sin-respuesta.png)
+![localhost:5000 sin respuesta mientras el contenedor usa 8080:5000](Evidencias/parte5-puertos-5000-sin-respuesta.png)
 
 ### Detener y eliminar el contenedor
 
@@ -463,7 +463,7 @@ Press CTRL+C to quit
 
 Al abrir `http://localhost:5000`, la página mostró el título **"Hola desde una variable de entorno"** y debajo el texto "Esta aplicación se está ejecutando dentro de un contenedor."
 
-![Primera ejecución con variable de entorno](evidencias/parte5-entorno-1.png)
+![Primera ejecución con variable de entorno](Evidencias/parte5-entorno-1.png)
 
 #### Detener y eliminar el contenedor
 
@@ -500,7 +500,7 @@ Press CTRL+C to quit
 
 #### Captura del navegador
 
-![Página con el mensaje "Configuración cambiada sin modificar la imagen"](evidencias/parte5-entorno-2.png)
+![Página con el mensaje "Configuración cambiada sin modificar la imagen"](Evidencias/parte5-entorno-2.png)
 
 #### Detener y eliminar el contenedor
 
