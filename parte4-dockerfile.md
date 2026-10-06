@@ -119,11 +119,11 @@ Press CTRL+C to quit
 
 `http://localhost:5000`:
 
-![Página principal ejecutada localmente](evidencias/parte4-local-5000.png)
+![Página principal ejecutada localmente](Evidencias/parte4-local-5000.png)
 
 `http://localhost:5000/info`:
 
-![Ruta /info ejecutada localmente](evidencias/parte4-local-info.png)
+![Ruta /info ejecutada localmente](Evidencias/parte4-local-info.png)
 
 ## Qué hace la aplicación
 
