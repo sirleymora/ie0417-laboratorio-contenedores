@@ -1,10 +1,13 @@
 # Laboratorio 2: Laboratorio de Contenedores
 
 **Curso:** IE0417 - Diseño de Software para Ingeniería
+
 **Universidad:** Universidad de Costa Rica, Escuela de Ingeniería Eléctrica
+
 **Docente:** Rafael Esteban Badilla Alvarado
+
 **Estudiante:** Sirley Mora Chavarría
-**Modalidad:** Individual
+
 
 En este laboratorio practiqué el uso de contenedores con Docker: ejecutar contenedores, construir una imagen propia con un `Dockerfile`, publicar puertos, usar variables de entorno, persistir datos con volúmenes y bind mounts, y comunicar contenedores mediante redes. Todo el trabajo se hizo en Windows con Docker Desktop y PowerShell, dentro de Visual Studio Code.
 
