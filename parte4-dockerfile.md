@@ -142,7 +142,7 @@ Utiliza **Flask**, un framework de Python para crear aplicaciones web. Está dec
 
 ## Por qué se usa `host="0.0.0.0"` en lugar de `localhost`
 
-Dentro de un contenedor, `localhost` (127.0.0.1) significa "el propio contenedor". Si la aplicación escuchara solo ahí, únicamente podría recibir conexiones originadas desde dentro del mismo contenedor, y nada de afuera podría llegar a ella. Con `0.0.0.0` la aplicación escucha en todas las interfaces de red del contenedor, por lo que puede recibir conexiones que lleguen desde el exterior una vez que el puerto esté publicado.
+Dentro de un contenedor, `localhost` significa "el propio contenedor". Si la aplicación escuchara solo ahí, únicamente podría recibir conexiones originadas desde dentro del mismo contenedor, y nada de afuera podría llegar a ella. Con `0.0.0.0` la aplicación escucha en todas las interfaces de red del contenedor, por lo que puede recibir conexiones que lleguen desde el exterior una vez que el puerto esté publicado.
 
 Esto se ve en los logs de la ejecución, donde Flask indicó `Running on all addresses (0.0.0.0)`.
 
@@ -273,7 +273,7 @@ Construir una imagen es ejecutar la "receta" del `Dockerfile` paso a paso para o
 
 Tiene dos partes separadas por `:`:
 
-- `laboratorio-flask` es el **nombre** (repositorio) de la imagen.
+- `laboratorio-flask` es el **nombre** de la imagen.
 - `1.0` es la **etiqueta (tag)**, que normalmente indica la versión. Si no se indica, Docker usa `latest`.
 
 ## Diferencia entre el nombre de la imagen y el nombre del contenedor
