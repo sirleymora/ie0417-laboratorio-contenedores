@@ -2,7 +2,7 @@
 
 **Curso:** IE0417 - Diseño de Software para Ingeniería
 
-**Institución:** Universidad de Costa Rica, Escuela de Ingeniería Eléctrica
+**Universidad de Costa Rica, Escuela de Ingeniería Eléctrica**
 
 **Docente:** Rafael Esteban Badilla Alvarado
 
