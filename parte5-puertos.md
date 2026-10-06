@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Comprender cómo exponer una aplicación que corre dentro de un contenedor para poder accederla desde la máquina anfitriona (mi computadora).
+Comprender cómo exponer una aplicación que corre dentro de un contenedor para poder accederla desde la máquina anfitriona.
 
 ---
 
@@ -29,7 +29,7 @@ CONTAINER ID   IMAGE                   COMMAND           CREATED         STATUS 
 
 ### Qué observé
 
-En la columna `PORTS` aparece `0.0.0.0:5000->5000/tcp`. Antes, cuando ejecuté el contenedor sin `-p`, esa columna solo mostraba `5000/tcp`, que es el puerto declarado por `EXPOSE` pero sin conexión hacia mi máquina. Ahora el puerto sí está publicado: lo que llegue al puerto 5000 de mi computadora se redirige al puerto 5000 del contenedor. (El `[::]` es lo mismo pero para direcciones IPv6.)
+En la columna `PORTS` aparece `0.0.0.0:5000->5000/tcp`. Antes, cuando ejecuté el contenedor sin `-p`, esa columna solo mostraba `5000/tcp`, que es el puerto declarado por `EXPOSE` pero sin conexión hacia mi máquina. Ahora el puerto sí está publicado: lo que llegue al puerto 5000 de mi computadora se redirige al puerto 5000 del contenedor. 
 
 ### Captura del navegador
 
@@ -98,7 +98,7 @@ ff74cb27e613   laboratorio-flask:1.0   "python app.py"   2 minutes ago   Up 2 mi
 
 ### Captura del navegador
 
-En la siguiente imagen se evidencia que l local host no responde: 
+En la siguiente imagen se evidencia que el local host no responde: 
 
 ![localhost:5000 sin respuesta mientras el contenedor usa 8080:5000](Evidencias/parte5-puertos-5000-sin-respuesta.png)
 
@@ -124,7 +124,7 @@ Al detener el contenedor desde otra terminal, la terminal donde corría `docker 
 
 ### Qué significa `-p 5000:5000`
 
-Que el puerto 5000 de mi computadora (host) se conecta con el puerto 5000 del contenedor. Cualquier petición que llegue a `localhost:5000` se redirige a la aplicación dentro del contenedor.
+Que el puerto 5000 de mi computadora se conecta con el puerto 5000 del contenedor. Cualquier petición que llegue a `localhost:5000` se redirige a la aplicación dentro del contenedor.
 
 ### Qué significa `-p 8080:5000`
 
@@ -332,7 +332,7 @@ Devuelve, en formato JSON, toda la información detallada de la configuración y
 - `"Status": "running"` confirma que el contenedor está activo, y `"ExitCode": 0` y `"OOMKilled": false` indican que no ha fallado ni se quedó sin memoria.
 - `Cmd` (`python app.py`) y `WorkingDir` (`/app`) coinciden con lo que definí en el `Dockerfile` con `CMD` y `WORKDIR`.
 - `PortBindings` y `Ports` muestran el mapeo del puerto 5000 del contenedor al puerto 5000 de mi computadora, el mismo que aparece en `docker ps`.
-- El contenedor está en la red `bridge` (la red por defecto) con la IP `172.17.0.2`, y el gateway `172.17.0.1` es la dirección que vi como origen de las peticiones en los logs.
+- El contenedor está en la red `bridge` la red por defecto con la IP `172.17.0.2`, y el gateway `172.17.0.1` es la dirección que vi como origen de las peticiones en los logs.
 - `"Mounts": []` indica que no tiene volúmenes montados, y `"Memory": 0` que no tiene un límite de memoria configurado.
 
 Para confirmar un dato puntual sin leer todo el JSON, usé la opción `--format`:
@@ -367,7 +367,7 @@ CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O     
 #### Qué observé
 
 - **CPU:** 0.03 %, casi nada, porque la aplicación está esperando peticiones.
-- **Memoria:** 22.77 MiB usados de 7.447 GiB disponibles (0.30 %). Es muy poco, y el límite que muestra es la memoria total asignada a Docker, no un límite del contenedor.
+- **Memoria:** 22.77 MiB usados de 7.447 GiB disponibles. Es muy poco, y el límite que muestra es la memoria total asignada a Docker, no un límite del contenedor.
 - **Red (`NET I/O`):** 4.64 kB recibidos y 1.9 kB enviados, lo que corresponde a las peticiones que hice desde el navegador.
 - **`PIDS`:** 2 procesos corriendo dentro del contenedor.
 
@@ -412,7 +412,7 @@ Porque un contenedor, sobre todo si está en segundo plano, no muestra directame
 
 **3. ¿Qué información útil se puede obtener con `docker inspect`?**
 
-El estado del contenedor (si está corriendo, su código de salida, si fue terminado por falta de memoria), la imagen de la que viene, el comando que ejecuta, el directorio de trabajo, las variables de entorno, los puertos publicados, la red y su dirección IP, los volúmenes montados y los límites de recursos. Es útil para verificar que el contenedor quedó configurado como esperaba y para diagnosticar problemas.
+El estado del contenedor, la imagen de la que viene, el comando que ejecuta, el directorio de trabajo, las variables de entorno, los puertos publicados, la red y su dirección IP, los volúmenes montados y los límites de recursos. Es útil para verificar que el contenedor quedó configurado como esperaba y para diagnosticar problemas.
 
 **4. ¿Por qué es importante observar el consumo de recursos?**
 
@@ -534,11 +534,11 @@ Esta parte me mostró que una misma imagen puede comportarse de forma distinta s
 
 **1. ¿Por qué es útil configurar aplicaciones mediante variables de entorno?**
 
-Porque permite cambiar el comportamiento de una aplicación sin modificar su código ni reconstruir la imagen. La misma imagen se puede ejecutar con configuraciones distintas según el contexto (desarrollo, pruebas, producción), y los valores quedan separados del código.
+Porque permite cambiar el comportamiento de una aplicación sin modificar su código ni reconstruir la imagen. La misma imagen se puede ejecutar con configuraciones distintas según el contexto de desarrollo, pruebas, producción, y los valores quedan separados del código.
 
 **2. ¿Qué tipo de información podría configurarse así?**
 
-Datos que cambian según el entorno: la dirección y el puerto de una base de datos, el nombre de usuario o contraseña de un servicio, claves de acceso o tokens de una API, el modo de ejecución (desarrollo o producción), el nivel de detalle de los logs o, como en este laboratorio, un mensaje que se muestra en pantalla.
+Datos que cambian según el entorno: la dirección y el puerto de una base de datos, el nombre de usuario o contraseña de un servicio, claves de acceso o tokens de una API, el modo de ejecución, el nivel de detalle de los logs o, como en este laboratorio, un mensaje que se muestra en pantalla.
 
 **3. ¿Por qué no es buena práctica guardar contraseñas directamente dentro del código?**
 
