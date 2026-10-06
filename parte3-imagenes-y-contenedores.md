@@ -14,7 +14,7 @@ docker pull ubuntu
 
 ### Explicación
 
-Este comando descarga una imagen desde un registro (por defecto Docker Hub) hacia mi computadora, **sin crear ni ejecutar ningún contenedor**. Como no indiqué una versión, Docker usó la etiqueta `latest` por defecto (`Using default tag: latest`). La imagen se descarga en capas (cada línea `Pull complete` o `Download complete` corresponde a una capa).
+Este comando descarga una imagen desde un registro hacia mi computadora, **sin crear ni ejecutar ningún contenedor**. Como no indiqué una versión, Docker usó la etiqueta `latest` por defecto (`Using default tag: latest`). La imagen se descarga en capas (cada línea `Pull complete` o `Download complete` corresponde a una capa).
 
 ### Resultado obtenido
 
@@ -55,7 +55,7 @@ ubuntu:latest        f144425ff09b        162MB
 
 ### Qué observé
 
-Aparecen dos imágenes: `hello-world`, que descargué en la Parte 2 y es diminuta (25.9 kB), y `ubuntu`, que acabo de descargar y ocupa 162 MB. Aun así, 162 MB es muy poco para un sistema operativo completo, lo que muestra que es una versión mínima.
+Aparecen dos imágenes: `hello-world`, que descargué en la Parte 2 y es diminuta de 25.9 kB, y `ubuntu`, que acabo de descargar y ocupa 162 MB. Aun así, 162 MB es muy poco para un sistema operativo completo, lo que muestra que es una versión mínima.
 
 ### Reflexión
 
@@ -71,7 +71,7 @@ docker run -it ubuntu bash
 
 ### Explicación
 
-Este comando crea un contenedor a partir de la imagen `ubuntu` y ejecuta dentro de él el programa `bash` (una terminal). Las opciones significan:
+Este comando crea un contenedor a partir de la imagen `ubuntu` y ejecuta dentro de él el programa `bash`. Las opciones significan:
 
 - `-i` (interactivo): mantiene abierta la entrada estándar, para que pueda escribir comandos.
 - `-t` (tty): asigna una terminal, para que se vea como una consola normal.
@@ -142,7 +142,7 @@ fd0fcc96cf60   hello-world   "/hello"   9 minutes ago        Exited (0) 9 minute
 
 ### Qué observé
 
-Aparecen dos contenedores, ambos con estado `Exited (0)`: el de `hello-world` (de la Parte 2) y el nuevo de `ubuntu`, que ejecutó `bash`. Docker les asignó nombres aleatorios (`musing_shamir` y `magical_sammet`) porque no usé `--name`.
+Aparecen dos contenedores, ambos con estado `Exited (0)`: el de `hello-world` y el nuevo de `ubuntu`, que ejecutó `bash`. Docker les asignó nombres aleatorios (`musing_shamir` y `magical_sammet`) porque no usé `--name`.
 
 ### Reflexión
 
@@ -158,7 +158,7 @@ No. La imagen de Ubuntu es solo una plantilla con los archivos y librerías de U
 
 **2. ¿Por qué el contenedor puede parecer un sistema Linux si no es una máquina virtual completa?**
 
-Porque dentro del contenedor tengo el sistema de archivos, las herramientas y las librerías de Ubuntu, por lo que al usar `ls` o `cat /etc/os-release` veo exactamente lo mismo que vería en un Ubuntu real. Lo que no tiene es un kernel propio: usa el del sistema anfitrión, y está aislado del resto del sistema, así que da la apariencia de ser una máquina separada.
+Porque dentro del contenedor tengo el sistema de archivos, las herramientas y las librerías de Ubuntu, por lo que al usar `ls` o `cat /etc/os-release` veo exactamente lo mismo que vería en un Ubuntu real. Lo que no tiene es un kernel propio, usa el del sistema anfitrión, y está aislado del resto del sistema, así que da la apariencia de ser una máquina separada.
 
 **3. ¿Qué significa que el contenedor comparta el kernel con el host?**
 
@@ -310,7 +310,7 @@ Crear un contenedor nuevo (`docker run`) genera una instancia nueva y limpia a p
 
 **3. ¿Qué sucede con los datos creados dentro de un contenedor si este se elimina?**
 
-Se pierden, porque viven en el sistema de archivos del propio contenedor, que se borra junto con él. Por eso, cuando se necesita conservar información más allá de la vida del contenedor, se usan volúmenes (que veremos más adelante en el laboratorio).
+Se pierden, porque viven en el sistema de archivos del propio contenedor, que se borra junto con él. Por eso, cuando se necesita conservar información más allá de la vida del contenedor, se usan volúmenes.
 
 **4. ¿Por qué se dice que los contenedores son desechables?**
 
