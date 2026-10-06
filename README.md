@@ -41,8 +41,8 @@ laboratorio-contenedores/
 ├── parte6-volumenes.md
 ├── parte7-redes.md
 ├── parte8-limpieza.md
-├── evidencias/
-└── app/
+├── Evidencias/
+└── App/
     ├── Dockerfile
     ├── app.py
     └── requirements.txt
