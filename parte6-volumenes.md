@@ -4,7 +4,7 @@
 
 Comprender por qué los datos dentro de un contenedor pueden perderse y cómo los volúmenes permiten conservar información fuera del ciclo de vida del contenedor.
 
-Por defecto, los datos que se crean dentro de un contenedor se pierden cuando este se elimina (lo vi en la Parte 3, con el archivo `mensaje.txt`). Los volúmenes resuelven esto guardando los datos en un espacio administrado por Docker, separado de cualquier contenedor.
+Por defecto, los datos que se crean dentro de un contenedor se pierden cuando este se elimina. Los volúmenes resuelven esto guardando los datos en un espacio administrado por Docker, separado de cualquier contenedor.
 
 ---
 
@@ -212,7 +212,7 @@ Eliminar un contenedor (`docker rm`) borra esa instancia y los datos que estaban
 
 **4. ¿Para qué casos reales se usarían volúmenes?**
 
-Para guardar los datos de una base de datos (por ejemplo, MySQL, PostgreSQL o el propio Redis), archivos que suben los usuarios a una aplicación, logs que se quieren conservar o archivos de configuración que deben persistir. En general, para cualquier información que no se quiera perder cuando se actualiza o se reemplaza un contenedor.
+Para guardar los datos de una base de datos, archivos que suben los usuarios a una aplicación, logs que se quieren conservar o archivos de configuración que deben persistir. En general, para cualquier información que no se quiera perder cuando se actualiza o se reemplaza un contenedor.
 
 ---
 
@@ -262,7 +262,7 @@ Dockerfile
 requirements.txt
 ```
 
-### Primera ejecución (código original)
+### Primera ejecución 
 
 Desde la carpeta `App`:
 
@@ -283,7 +283,7 @@ Press CTRL+C to quit
 
 Al abrir `http://localhost:5000` se veía la página con el texto original: "Esta aplicación se está ejecutando dentro de un contenedor."
 
-![Página con el texto original](evidencias/parte6-bind-original.png)
+![Página con el texto original](Evidencias/parte6-local.png)
 
 ### Modificación del código en mi computadora
 
@@ -307,7 +307,7 @@ app-bind
 app-bind
 ```
 
-### Segunda ejecución (código modificado)
+### Segunda ejecución 
 
 Volví a ejecutar el contenedor con el mismo comando, desde la carpeta `App`, **sin reconstruir la imagen** (no usé `docker build`):
 
@@ -328,7 +328,7 @@ Press CTRL+C to quit
 
 Al abrir `http://localhost:5000`, la página mostró el texto nuevo: "Este texto lo cambié desde mi computadora."
 
-![Página con el texto modificado desde mi computadora](evidencias/parte6-bind-cambio.png)
+![Página con el texto modificado desde mi computadora](parte6-local-desde-compu.png)
 
 Al terminar detuve y eliminé el contenedor:
 
@@ -355,7 +355,7 @@ Tuve que detener el contenedor y ejecutarlo de nuevo para ver el cambio, porque 
 
 ### Por qué esto puede ser útil durante el desarrollo
 
-Porque puedo editar el código con mi editor, como siempre, y el contenedor usa esos cambios de inmediato sin tener que reconstruir la imagen cada vez. Esto ahorra mucho tiempo al probar cambios, y la aplicación corre en el mismo entorno (Python, librerías) que tendría en producción.
+Porque puedo editar el código con mi editor, como siempre, y el contenedor usa esos cambios de inmediato sin tener que reconstruir la imagen cada vez. Esto ahorra mucho tiempo al probar cambios, y la aplicación corre en el mismo entorno que tendría en producción.
 
 ### Reflexión
 
@@ -377,4 +377,4 @@ El volumen, porque lo administra Docker, no depende de la estructura de carpetas
 
 **4. ¿Qué riesgos podría tener montar carpetas del host dentro del contenedor?**
 
-El contenedor puede leer y modificar (o borrar) los archivos reales de mi computadora que estén en esa carpeta, así que un error o un programa malicioso dentro del contenedor podría afectar mis archivos. Además, el montaje reemplaza el contenido original de la ruta dentro del contenedor, como me pasó con el error de `app.py`, y depende de la ruta y los permisos de cada sistema operativo, lo que dificulta que funcione igual en otra máquina. Por eso conviene montar solo las carpetas necesarias.
+El contenedor puede leer y modificar los archivos reales de mi computadora que estén en esa carpeta, así que un error o un programa malicioso dentro del contenedor podría afectar mis archivos. Además, el montaje reemplaza el contenido original de la ruta dentro del contenedor, como me pasó con el error de `app.py`, y depende de la ruta y los permisos de cada sistema operativo, lo que dificulta que funcione igual en otra máquina. Por eso conviene montar solo las carpetas necesarias.
