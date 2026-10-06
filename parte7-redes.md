@@ -121,7 +121,7 @@ apt install -y curl
 
 La imagen `ubuntu` es mínima y no trae `curl`, que es la herramienta que uso para hacer peticiones web desde la terminal. `apt update` actualiza la lista de paquetes disponibles y `apt install -y curl` instala `curl` (la opción `-y` responde "sí" automáticamente a la confirmación).
 
-#### Resultado obtenido (parcial)
+#### Resultado obtenido 
 
 ```text
 root@f4f8c789b669:/# apt update
@@ -237,7 +237,7 @@ Lo que más me llamó la atención es que el servidor Nginx nunca publicó ning�
 
 **1. ¿Por qué los contenedores necesitan redes?**
 
-Porque los contenedores están aislados unos de otros por defecto, y las aplicaciones reales suelen estar formadas por varios servicios que deben comunicarse (por ejemplo, una aplicación web con una base de datos). Las redes permiten conectar solo a los contenedores que deben hablar entre sí y mantener aislados a los demás.
+Porque los contenedores están aislados unos de otros por defecto, y las aplicaciones reales suelen estar formadas por varios servicios que deben comunicarse, por ejemplo, una aplicación web con una base de datos. Las redes permiten conectar solo a los contenedores que deben hablar entre sí y mantener aislados a los demás.
 
 **2. ¿Qué ventaja tiene usar nombres de contenedor en lugar de direcciones IP?**
 
@@ -245,7 +245,7 @@ Los nombres son más fáciles de recordar y no cambian, mientras que las direcci
 
 **3. ¿Qué diferencia hay entre publicar un puerto hacia el host y comunicarse dentro de una red Docker?**
 
-Publicar un puerto (`-p`) abre una entrada desde mi computadora (el host) hacia un contenedor, y sirve para que yo, o cualquier programa en mi máquina, lo use desde el navegador. La comunicación dentro de una red Docker ocurre solo entre contenedores y no requiere publicar nada hacia afuera. En esta práctica, `servidor-web` no tenía ningún `-p` y aun así `cliente` pudo acceder a él, porque estaban en la misma red. Por eso, lo normal es publicar solo los puertos que deben ser accesibles desde afuera, y dejar los demás servicios (como una base de datos) accesibles únicamente dentro de la red.
+Publicar un puerto (`-p`) abre una entrada desde mi computadora (el host) hacia un contenedor, y sirve para que yo, o cualquier programa en mi máquina, lo use desde el navegador. La comunicación dentro de una red Docker ocurre solo entre contenedores y no requiere publicar nada hacia afuera. En esta práctica, `servidor-web` no tenía ningún `-p` y aun así `cliente` pudo acceder a él, porque estaban en la misma red. Por eso, lo normal es publicar solo los puertos que deben ser accesibles desde afuera, y dejar los demás servicios accesibles únicamente dentro de la red.
 
 **4. ¿Qué ejemplos reales podrían usar una red Docker?**
 
@@ -341,7 +341,7 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS        
 
 ## Problema que tuve: el cliente se ejecutó como un segundo servidor
 
-### Comando que ejecuté (incompleto)
+### Comando que ejecuté
 
 ```powershell
 docker run -it --name cliente-redis --network red-app redis
@@ -359,8 +359,6 @@ Starting Redis Server
 1:M 06 Oct 2026 04:35:22.001 * Ready to accept connections tcp
 1:M 06 Oct 2026 04:35:22.002 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
 ```
-
-La advertencia final (`WARNING`) es normal en un Redis de práctica: indica que no tiene contraseña. En un entorno real habría que protegerlo.
 
 Lo detuve con `Ctrl + C`, y el servidor se apagó de forma ordenada:
 
@@ -405,7 +403,7 @@ docker run -it --name cliente-redis --network red-app redis redis-cli -h redis-l
 
 ### Explicación
 
-Crea un contenedor interactivo y temporal llamado `cliente-redis`, en la misma red `red-app`, a partir de la imagen `redis`, pero esta vez ejecutando `redis-cli`, el programa cliente de Redis. La opción `-h redis-lab` le indica el **host** (la máquina) al que debe conectarse: el nombre del contenedor del servidor.
+Crea un contenedor interactivo y temporal llamado `cliente-redis`, en la misma red `red-app`, a partir de la imagen `redis`, pero esta vez ejecutando `redis-cli`, el programa cliente de Redis. La opción `-h redis-lab` le indica el **host**  al que debe conectarse: el nombre del contenedor del servidor.
 
 ### Cómo se conectó el cliente al servidor
 
@@ -456,13 +454,13 @@ red-app
 
 ### Explicación
 
-Detuve y eliminé el servidor, eliminé el contenedor cliente (que ya se había detenido al salir) y, al final, eliminé la red, que solo puede borrarse cuando ya no hay contenedores conectados.
+Detuve y eliminé el servidor, eliminé el contenedor cliente  y, al final, eliminé la red, que solo puede borrarse cuando ya no hay contenedores conectados.
 
 ---
 
 ## Qué enseñanza deja este ejemplo sobre aplicaciones con varios contenedores
 
-Que una aplicación puede dividirse en servicios independientes (en este caso, un servidor de datos y un cliente), cada uno en su propio contenedor, y que se comunican entre sí a través de una red de Docker usando nombres. Solo hace falta que los contenedores estén en la misma red; no es necesario publicar los puertos del servicio hacia mi computadora. También dejó ver una limitación: tuve que crear la red, el servidor y el cliente con varios comandos escritos a mano, y un error en uno de ellos (como el comando incompleto) complica todo el proceso.
+Que una aplicación puede dividirse en servicios independientes, cada uno en su propio contenedor, y que se comunican entre sí a través de una red de Docker usando nombres. Solo hace falta que los contenedores estén en la misma red; no es necesario publicar los puertos del servicio hacia mi computadora. También dejó ver una limitación: tuve que crear la red, el servidor y el cliente con varios comandos escritos a mano, y un error en uno de ellos complica todo el proceso.
 
 ## Reflexión
 
@@ -484,4 +482,4 @@ Cada servicio queda aislado, con sus propias dependencias, y puede actualizarse,
 
 **4. ¿Qué limitación tiene hacerlo manualmente con varios comandos `docker run`?**
 
-Hay que escribir y recordar cada comando, con sus opciones, en el orden correcto (crear la red, levantar el servidor y luego el cliente), y cualquier error o descuido complica todo el proceso, como me pasó con el comando incompleto. Además, es difícil repetir la misma configuración en otra máquina o compartirla con otras personas. Docker Compose resuelve esto describiendo todos los servicios en un solo archivo.
+Hay que escribir y recordar cada comando, con sus opciones, en el orden correcto, y cualquier error o descuido complica todo el proceso, como me pasó con el comando incompleto. Además, es difícil repetir la misma configuración en otra máquina o compartirla con otras personas. Docker Compose resuelve esto describiendo todos los servicios en un solo archivo.
