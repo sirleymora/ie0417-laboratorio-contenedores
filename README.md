@@ -8,6 +8,8 @@
 
 **Estudiante:** Sirley Mora Chavarría
 
+**Carnet:** C15059
+
 
 En este laboratorio practiqué el uso de contenedores con Docker: ejecutar contenedores, construir una imagen propia con un `Dockerfile`, publicar puertos, usar variables de entorno, persistir datos con volúmenes y bind mounts, y comunicar contenedores mediante redes. Todo el trabajo se hizo en Windows con Docker Desktop y PowerShell, dentro de Visual Studio Code.
 
