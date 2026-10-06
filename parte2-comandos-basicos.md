@@ -17,7 +17,7 @@ docker run hello-world
 Este comando crea y ejecuta un contenedor a partir de la imagen `hello-world`. Hace varias cosas en una sola orden:
 
 1. Busca la imagen `hello-world` en mi computadora.
-2. Si no la encuentra, la descarga desde Docker Hub (el registro público de imágenes).
+2. Si no la encuentra, la descarga desde Docker Hub.
 3. Crea un contenedor nuevo a partir de esa imagen.
 4. Lo ejecuta. El programa que lleva dentro imprime un mensaje y termina.
 
@@ -78,8 +78,7 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 ### Reflexión
 
-La lista salió vacía, solo con los encabezados de las columnas. Esto no significa que el contenedor no se haya creado, sino que ya no estaba en ejecución: terminó apenas imprimió su mensaje.
-
+La lista salió vacía, solo con los encabezados de las columnas. Esto no significa que el contenedor no se haya creado, sino que ya no estaba en ejecución.
 ---
 
 ## Comando ejecutado: `docker ps -a`
@@ -137,4 +136,4 @@ Porque `docker ps` solo muestra contenedores que están en ejecución, y `docker
 
 **4. ¿Qué demuestra este primer ejemplo sobre Docker?**
 
-Demuestra que con un solo comando puedo descargar una imagen desde un registro, crear un contenedor a partir de ella y ejecutarlo, sin instalar nada manualmente. También muestra que un contenedor está ligado al proceso que ejecuta (cuando el proceso termina, el contenedor se detiene) y que la imagen y el contenedor son cosas distintas: la imagen quedó descargada y el contenedor quedó creado aparte.
+Demuestra que con un solo comando puedo descargar una imagen desde un registro, crear un contenedor a partir de ella y ejecutarlo, sin instalar nada manualmente. También muestra que un contenedor está ligado al proceso que ejecuta y que la imagen y el contenedor son cosas distintas: la imagen quedó descargada y el contenedor quedó creado aparte.
