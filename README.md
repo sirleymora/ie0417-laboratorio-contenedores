@@ -54,7 +54,7 @@ laboratorio-contenedores/
 
 **1. ¿Qué es un contenedor?**
 
-Es una forma de ejecutar una aplicación junto con lo que necesita (librerías, configuración) en un entorno aislado y ligero. No incluye un sistema operativo completo, sino que comparte el kernel con la máquina anfitriona, por eso arranca rápido y ocupa poco. Lo vi en la práctica: un contenedor de Ubuntu parece un Linux completo, pero se crea en segundos y se elimina con un comando.
+Es una forma de ejecutar una aplicación junto con lo que necesita en un entorno aislado y ligero. No incluye un sistema operativo completo, sino que comparte el kernel con la máquina anfitriona, por eso arranca rápido y ocupa poco. Por ejemplo, un contenedor de Ubuntu parece un Linux completo, pero se crea en segundos y se elimina con un comando.
 
 **2. ¿Qué problema resuelve Docker?**
 
@@ -74,7 +74,7 @@ Aprendí que aunque la aplicación escuche en un puerto dentro del contenedor, n
 
 **6. ¿Qué aprendí sobre volúmenes?**
 
-Aprendí que lo que se guarda dentro de un contenedor se pierde cuando este se elimina, y que los volúmenes permiten conservar datos fuera del contenedor. Lo comprobé con el archivo de `datos-lab`: eliminé el primer contenedor y un segundo contenedor lo siguió leyendo. También aprendí que un bind mount conecta una carpeta de mi computadora con el contenedor, lo cual sirve para desarrollar, aunque puede ocultar lo que la imagen tenía en esa ruta (como me pasó al ejecutarlo desde la carpeta equivocada).
+Aprendí que lo que se guarda dentro de un contenedor se pierde cuando este se elimina, y que los volúmenes permiten conservar datos fuera del contenedor. Lo comprobé con el archivo de `datos-lab`: eliminé el primer contenedor y un segundo contenedor lo siguió leyendo. También aprendí que un bind mount conecta una carpeta de mi computadora con el contenedor, lo cual sirve para desarrollar, aunque puede ocultar lo que la imagen tenía en esa ruta.
 
 **7. ¿Qué aprendí sobre redes?**
 
@@ -82,11 +82,11 @@ Aprendí que los contenedores conectados a la misma red pueden comunicarse entre
 
 **8. ¿En qué casos usaría Docker en un proyecto de software?**
 
-Lo usaría para tener el mismo entorno de desarrollo en todo el equipo, para ejecutar servicios auxiliares (una base de datos, Redis o un servidor web) sin instalarlos en mi computadora, para probar aplicaciones en entornos limpios y para desplegar una aplicación de forma reproducible en otro servidor. También para proyectos con varios servicios que deben comunicarse entre sí.
+Lo usaría para tener el mismo entorno de desarrollo en todo el equipo, para ejecutar servicios auxiliares sin instalarlos en mi computadora, para probar aplicaciones en entornos limpios y para desplegar una aplicación de forma reproducible en otro servidor. También para proyectos con varios servicios que deben comunicarse entre sí.
 
 **9. ¿Qué parte del laboratorio me pareció más útil?**
 
-La parte que me pareció más importante fue ver la aplicación funcionando en `localhost` y cómo la página cambia al modificar `app.py` desde mi computadora, con el bind mount. Me ayudó a entender cómo se puede desarrollar con Docker sin reconstruir la imagen cada vez que cambio el código, y a ver de forma concreta cómo el contenedor usa los archivos de mi carpeta.
+La parte que me pareció más útil fue ver la aplicación funcionando en `localhost` y cómo la página cambia al modificar `app.py` desde mi computadora, con el bind mount. Me ayudó a entender cómo se puede desarrollar con Docker sin reconstruir la imagen cada vez que cambio el código, y a ver de forma concreta cómo el contenedor usa los archivos de mi carpeta.
 
 **10. ¿Qué parte me pareció más confusa?**
 
