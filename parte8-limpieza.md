@@ -131,7 +131,7 @@ docker volume prune
 
 #### Explicación
 
-Elimina los volúmenes locales que no están siendo usados por ningún contenedor. En esta versión de Docker, la advertencia indica que se eliminan los volúmenes **anónimos** (los que Docker crea sin nombre) que no están en uso.
+Elimina los volúmenes locales que no están siendo usados por ningún contenedor. En esta versión de Docker, la advertencia indica que se eliminan los volúmenes **anónimos** los que Docker crea sin nombre que no están en uso.
 
 #### Resultado obtenido
 
@@ -155,7 +155,7 @@ docker system df
 
 ### Explicación
 
-Muestra cuánto espacio en disco usa Docker, desglosado por tipo de recurso (imágenes, contenedores, volúmenes y caché de construcción), y cuánto de ese espacio se podría recuperar.
+Muestra cuánto espacio en disco usa Docker, desglosado por tipo de recurso, y cuánto de ese espacio se podría recuperar.
 
 ### Resultado obtenido
 
@@ -185,7 +185,7 @@ No ejecuté `docker system prune`, que es el comando general de limpieza, ni, po
 | Recurso | Qué se elimina | Efecto |
 |---|---|---|
 | **Contenedores** (`docker container prune`) | Los contenedores detenidos | Libera poco espacio; se pierden los datos que estaban solo dentro de esos contenedores. Las imágenes y volúmenes se conservan. |
-| **Imágenes** (`docker image prune`) | Imágenes sin uso (por defecto, solo las colgantes) | Libera mucho espacio. Si se elimina una imagen que se necesita, hay que descargarla o reconstruirla. |
+| **Imágenes** (`docker image prune`) | Imágenes sin uso | Libera mucho espacio. Si se elimina una imagen que se necesita, hay que descargarla o reconstruirla. |
 | **Volúmenes** (`docker volume prune`) | Volúmenes que ningún contenedor usa | Es la limpieza más delicada: puede borrar datos persistentes de forma definitiva. |
 
 ---
@@ -204,7 +204,7 @@ Porque cada imagen descargada o construida se guarda completa en el disco, y ade
 
 **2. ¿Qué diferencia hay entre eliminar un contenedor y eliminar una imagen?**
 
-Eliminar un contenedor borra solo esa instancia (y lo que tuviera guardado dentro), pero la imagen sigue disponible para crear contenedores nuevos. Eliminar una imagen borra la plantilla: ya no se pueden crear contenedores a partir de ella hasta descargarla o reconstruirla de nuevo, y Docker no deja eliminarla mientras algún contenedor la esté usando. Lo vi en `docker system df`: después de borrar los contenedores, las imágenes seguían ahí.
+Eliminar un contenedor borra solo esa instancia, pero la imagen sigue disponible para crear contenedores nuevos. Eliminar una imagen borra la plantilla: ya no se pueden crear contenedores a partir de ella hasta descargarla o reconstruirla de nuevo, y Docker no deja eliminarla mientras algún contenedor la esté usando. Lo vi en `docker system df`: después de borrar los contenedores, las imágenes seguían ahí.
 
 **3. ¿Por qué se debe tener cuidado al eliminar volúmenes?**
 
