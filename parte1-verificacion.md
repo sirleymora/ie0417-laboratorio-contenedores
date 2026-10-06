@@ -46,7 +46,7 @@ Este comando muestra información general del cliente y del servidor (daemon) de
 
 Que aparezca la sección **Server** es importante: significa que el cliente logró comunicarse con el daemon y que Docker está realmente en ejecución.
 
-### Resultado obtenido (parcial)
+### Resultado obtenido
 
 ```text
 Client:
@@ -135,7 +135,7 @@ Common Commands:
 ### Evidencias
 
 En la siguiente imagen se evidencia la instalación correcta de Docker:
-![Docker instalado](evidencias/parte1-docker-instalado.png)
+![Docker instalado](Evidencias/parte1-docker-instalado.png)
 
 ### Reflexión
 
