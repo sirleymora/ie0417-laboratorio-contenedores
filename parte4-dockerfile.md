@@ -142,7 +142,7 @@ Utiliza **Flask**, un framework de Python para crear aplicaciones web. Está dec
 
 ## Por qué se usa `host="0.0.0.0"` en lugar de `localhost`
 
-Dentro de un contenedor, `localhost` (127.0.0.1) significa "el propio contenedor". Si la aplicación escuchara solo ahí, únicamente podría recibir conexiones originadas desde dentro del mismo contenedor, y nada de afuera (ni mi navegador ni otros contenedores) podría llegar a ella. Con `0.0.0.0` la aplicación escucha en todas las interfaces de red del contenedor, por lo que puede recibir conexiones que lleguen desde el exterior una vez que el puerto esté publicado.
+Dentro de un contenedor, `localhost` (127.0.0.1) significa "el propio contenedor". Si la aplicación escuchara solo ahí, únicamente podría recibir conexiones originadas desde dentro del mismo contenedor, y nada de afuera podría llegar a ella. Con `0.0.0.0` la aplicación escucha en todas las interfaces de red del contenedor, por lo que puede recibir conexiones que lleguen desde el exterior una vez que el puerto esté publicado.
 
 Esto se ve en los logs de la ejecución, donde Flask indicó `Running on all addresses (0.0.0.0)`.
 
@@ -154,11 +154,11 @@ Flask es el framework que convierte el programa en un servidor web. Se encarga d
 
 **2. ¿Para qué sirve el archivo `requirements.txt`?**
 
-Es la lista de dependencias que necesita el proyecto. Con `pip install -r requirements.txt` se instalan automáticamente todas las librerías indicadas. Así, cualquier persona (o cualquier contenedor) puede preparar el entorno con un solo comando, en lugar de instalar cada paquete a mano. En este laboratorio lo usa el `Dockerfile` para instalar Flask dentro de la imagen.
+Es la lista de dependencias que necesita el proyecto. Con `pip install -r requirements.txt` se instalan automáticamente todas las librerías indicadas. Así, cualquier persona puede preparar el entorno con un solo comando, en lugar de instalar cada paquete a mano. En este laboratorio lo usa el `Dockerfile` para instalar Flask dentro de la imagen.
 
 **3. ¿Por qué una aplicación dentro de un contenedor debe escuchar en `0.0.0.0`?**
 
-Porque si escucha solo en `localhost`, atendería únicamente conexiones internas del propio contenedor. Para que se pueda acceder desde fuera (desde mi máquina o desde otro contenedor), debe aceptar conexiones en todas las interfaces de red del contenedor, y eso es lo que significa `0.0.0.0`.
+Porque si escucha solo en `localhost`, atendería únicamente conexiones internas del propio contenedor. Para que se pueda acceder desde fuera, debe aceptar conexiones en todas las interfaces de red del contenedor, y eso es lo que significa `0.0.0.0`.
 
 **4. ¿Qué diferencia hay entre ejecutar la aplicación localmente y ejecutarla dentro de Docker?**
 
@@ -218,7 +218,7 @@ Copia el resto de los archivos de mi carpeta (incluyendo `app.py`) al directorio
 
 ### `EXPOSE 5000`
 
-Documenta que la aplicación escucha en el puerto 5000 dentro del contenedor. **No publica el puerto** hacia mi computadora; es solo informativo. Para poder acceder desde el navegador hay que usar `-p` al ejecutar el contenedor (se verá en la siguiente parte). Esto se notó en `docker ps`, que mostró `5000/tcp` en la columna `PORTS`, sin ningún mapeo hacia el host.
+Documenta que la aplicación escucha en el puerto 5000 dentro del contenedor. **No publica el puerto** hacia mi computadora; es solo informativo. Para poder acceder desde el navegador hay que usar `-p` al ejecutar el contenedor. Esto se notó en `docker ps`, que mostró `5000/tcp` en la columna `PORTS`, sin ningún mapeo hacia el host.
 
 ### `CMD ["python", "app.py"]`
 
@@ -376,8 +376,8 @@ Por el uso de la caché de capas de Docker. Cada instrucción genera una capa qu
 
 **4. ¿Qué diferencia hay entre `RUN` y `CMD`?**
 
-`RUN` se ejecuta durante la **construcción** de la imagen y su resultado queda guardado en una capa (por ejemplo, instalar Flask). `CMD` define el comando que se ejecuta al **iniciar un contenedor** a partir de la imagen (por ejemplo, lanzar `python app.py`). Es decir, `RUN` prepara la imagen y `CMD` indica qué hace el contenedor cuando arranca.
+`RUN` se ejecuta durante la **construcción** de la imagen y su resultado queda guardado en una capa, por ejemplo, instalar Flask. `CMD` define el comando que se ejecuta al **iniciar un contenedor** a partir de la imagen, por ejemplo, lanzar `python app.py`. Es decir, `RUN` prepara la imagen y `CMD` indica qué hace el contenedor cuando arranca.
 
 **5. ¿Qué pasaría si se elimina la imagen pero no el Dockerfile?**
 
-No se perdería nada importante, porque el `Dockerfile` es la receta y con él se puede reconstruir la imagen con `docker build`. Lo que no se podría hacer es crear nuevos contenedores hasta volver a construirla. Por eso es buena práctica conservar el `Dockerfile` (y el código) en el repositorio.
+No se perdería nada importante, porque el `Dockerfile` es la receta y con él se puede reconstruir la imagen con `docker build`. Lo que no se podría hacer es crear nuevos contenedores hasta volver a construirla. Por eso es buena práctica conservar el `Dockerfile` y el código en el repositorio.
